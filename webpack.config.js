@@ -4,7 +4,7 @@ module.exports = {
   mode: "production",
   entry: "./lib/index.js",
   output: {
-    filename: "[name].js",
+    filename: "index.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
@@ -25,6 +25,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  externals: {
+    react: "react",
   },
   resolve: {
     extensions: [".js"],
