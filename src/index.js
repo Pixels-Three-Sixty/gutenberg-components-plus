@@ -11,7 +11,12 @@ import SearchInput from "./components/SearchInput/SearchInput";
 import ServersideRenderWithLoader from "./components/ServersideRenderWithLoader/ServersideRenderWithLoader";
 import TinyMCEEditor from "./components/TinyMCEEditor/TinyMCEEditor";
 
+const test = () => {
+  console.log("test");
+};
+
 export {
+  test,
   CtaButton,
   CtalinkType,
   CtaHubspotType,

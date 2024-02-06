@@ -1,45 +1,39 @@
 import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-
 import { babel } from "@rollup/plugin-babel";
-
 import terser from "@rollup/plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import json from "@rollup/plugin-json";
 
-const packageJson = require("./package.json");
-
-export default [
-  {
-    input: "lib/index.js",
-    output: [
-      {
-        file: packageJson.main,
-        format: "cjs",
-        sourcemap: true,
-      },
-      // {
-      //   file: packageJson.module,
-      //   format: "esm",
-      //   sourcemap: true,
-      // },
-    ],
-    globals: {
-      react: "React",
-      "react-dom": "ReactDOM",
+export default {
+  input: ["./src/index.js"],
+  output: [
+    {
+      file: "dist/index.js",
+      format: "esm",
+      sourcemap: true,
     },
-    external: ["react", "react-dom"],
-    plugins: [
-      json(),
-      resolve(),
-      peerDepsExternal(),
-      babel({
-        exclude: "node_modules/**",
-        presets: ["@babel/env", "@babel/preset-react"],
-      }),
-      commonjs(),
-      terser(),
-    ],
-    external: ["react"],
-  },
-];
+  ],
+  external: [
+    "react",
+    "react-dom",
+    "@wordpress/components",
+    "@wordpress/block-editor",
+    "@wordpress/core-data",
+    "@wordpress/data",
+    "@wordpress/html-entities",
+    "@wordpress/icons",
+    "@wordpress/server-side-render",
+    "styled-components",
+    "react-dnd",
+    "react-dnd-html5-backend",
+    "@tinymce/tinymce-react",
+  ],
+  plugins: [
+    peerDepsExternal(),
+    babel({
+      exclude: "node_modules/**",
+      presets: ["@babel/env", "@babel/preset-react"],
+    }),
+    resolve(),
+    terser(),
+  ],
+};
