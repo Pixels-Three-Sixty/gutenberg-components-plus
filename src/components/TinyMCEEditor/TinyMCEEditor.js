@@ -19,7 +19,11 @@ function PopupEditor({ children, isOpen, closeModal, label, value }) {
           <EditorPlaceHolder>
             <div dangerouslySetInnerHTML={{ __html: value }} />
           </EditorPlaceHolder>
-          <Modal onRequestClose={closeModal} size={"large"}>
+          <Modal
+            onRequestClose={closeModal}
+            size={"large"}
+            shouldCloseOnClickOutside={false}
+          >
             <Label>{label}</Label>
             {children}
             <PanelRow>
